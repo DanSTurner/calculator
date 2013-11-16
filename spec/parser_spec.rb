@@ -1,15 +1,13 @@
-require 'rspec'
+require 'minitest/autorun'
 require './lib/parser'
 
-describe Parser do
+class ParserTest < MiniTest::Unit::TestCase
 
-  describe "#parse" do
+  def test_returns_reverse_polish_notation
+    old = "1 + 2"
+    expected = [:+, 1, 2]
 
-    it "should turn a string into a RPN array" do
-      Parser.parse("1 + 2").should eql [:+, 1, 2]
-    end
-
-
+    assert_equal expected, Parser.parse(old)
   end
 
 end
