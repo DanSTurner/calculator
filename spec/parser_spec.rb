@@ -10,11 +10,4 @@ class ParserTest < MiniTest::Unit::TestCase
     assert_equal expected, Parser.parse(old)
   end
 
-  def test_handles_outside_parens
-    old = "(1 + 2)"
-    expected = expected = [1, :+, 2]
-
-    assert_equal expected, Parser.parse(old)
-  end
-
 end
