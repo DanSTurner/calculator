@@ -10,4 +10,11 @@ class ParserTest < MiniTest::Unit::TestCase
     assert_equal expected, Parser.parse(old)
   end
 
+  def test_float
+    old = "1.5 + 2.5"
+    expected = [1.5, :+, 2.5]
+
+    assert_equal expected, Parser.parse(old)
+  end
+
 end
