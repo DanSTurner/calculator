@@ -7,15 +7,20 @@ class CLITest < MiniTest::Unit::TestCase
     @CLI = CLI.new
   end
 
-  def test_expect_ask_for_expression
-    mock_out = mock('object')
-    mock_in = mock('object')
-    mock_out.expects(:puts).with("Enter an expression to evaluate:")
-    mock_in.expects(:gets).returns("1 + 1")
-    mock_out.expects(:puts).with(2)
-    @CLI = CLI.new(mock_in, mock_out)
-    @CLI.run
+  def test_ask_for_expression
+    @CLI.expects(:puts).with("Enter an expression to evaluate:")
+    @CLI.ask
   end
 
+  def test_expect_get_expression
+    @CLI.expects(:gets).returns("1 + 1")
+    assert_equal "1 + 1", @CLI.get_expression
+  end
+
+  def test_provide_answer
+    @CLI.expects(:gets).returns("1 + 1")
+    @CLI.expects(:puts).with(2.0)
+    @CLI.evaluate_expression
+  end
 
 end
